@@ -8,7 +8,8 @@ This repository contains a Graph node implementation to extract the relations be
 
 ## Graph Data Store(Cypher Language)
 - Converted document chunks into Cypher based graph node using LLaMA 3.1 Embedding (4096 vectors)
-  ![graphdb](https://github.com/user-attachments/assets/9b209acb-390f-4648-8c08-a414640085e3)
+  ![graphph](https://github.com/user-attachments/assets/3de48bf6-3639-4ea7-b7eb-2eaa9937d50d)
+
 
 - Integrated docker Container with port 7687:7687
 
