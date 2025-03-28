@@ -21,26 +21,31 @@
 ###  Bank
 :Bank rdf:type owl:Class ;
       rdfs:subClassOf fibo-fbc-fct-fse:CommercialBank ;
+      rdfs:label "Bank" ;
       rdfs:comment "A financial institution that provides banking services and is regulated." .
 
 ###  Regulation
 :Regulation rdf:type owl:Class ;
             rdfs:subClassOf fibo-fnd-law-lcap:Regulation ;
+            rdfs:label "Regulation" ;
             rdfs:comment "A rule or directive enforced by a regulatory body." .
 
 ###  Risk
 :Risk rdf:type owl:Class ;
       rdfs:subClassOf fibo-fnd-gao-obj:Risk ;
+      rdfs:label "Risk" ;
       rdfs:comment "A potential uncertainty or loss in financial operations." .
 
 ###  LiquidityRisk
 :LiquidityRisk rdf:type owl:Class ;
               rdfs:subClassOf fibo-fbc-dae-cre:LiquidityRisk ;
+              rdfs:label "Liquidity Risk" ;
               rdfs:comment "Risk arising from insufficient liquid assets to meet obligations." .
 
 ###  CreditRisk
 :CreditRisk rdf:type owl:Class ;
            rdfs:subClassOf fibo-fbc-dae-cre:CreditRisk ;
+           rdfs:label "Credit Risk" ;
            rdfs:comment "Risk of loss due to a borrower's inability to meet debt obligations." .
 
 #################################################################
@@ -51,18 +56,21 @@
 :compliesWith rdf:type owl:ObjectProperty ;
               rdfs:domain :Bank ;
               rdfs:range :Regulation ;
+              rdfs:label "Complies With" ;
               rdfs:comment "Indicates that a bank complies with a regulation." .
 
 ###  addresses (Regulation → Risk)
 :addresses rdf:type owl:ObjectProperty ;
            rdfs:domain :Regulation ;
            rdfs:range :Risk ;
+           rdfs:label "Addresses" ;
            rdfs:comment "Regulation addresses a certain type of risk." .
 
 ###  assessesRisk (Bank → Risk)
 :assessesRisk rdf:type owl:ObjectProperty ;
               rdfs:domain :Bank ;
               rdfs:range :Risk ;
+              rdfs:label "Assesses Risk" ;
               rdfs:comment "A bank evaluates and manages different types of risk." .
 
 #################################################################
@@ -73,4 +81,5 @@
 :entityLabel rdf:type owl:DatatypeProperty ;
              rdfs:domain :Bank , :Regulation , :Risk , :LiquidityRisk , :CreditRisk ;
              rdfs:range xsd:string ;
+             rdfs:label "Entity Label" ;
              rdfs:comment "A human-readable label for entities in Neo4j." .
