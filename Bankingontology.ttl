@@ -1,9 +1,9 @@
-@prefix : <http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/> .
+@prefix : <http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/> . 
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> . 
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> . 
 @base <http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/> .
 
 <http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4> rdf:type owl:Ontology .
@@ -67,34 +67,30 @@
                rdfs:comment "A process to assess how a financial institution withstands adverse conditions." .
 
 #################################################################
-#    Object Properties (No Change Needed)
+#    Object Properties with Explicit Labels for Neo4j
 #################################################################
 
 ###  addresses
 :addresses rdf:type owl:ObjectProperty ;
-           rdfs:domain :Regulation ;
-           rdfs:range :Risk ;
+           rdfs:label "ADDRESSES" ;
            rdfs:comment "A regulation mitigates or controls a risk." .
 
 ###  assessesRisk
 :assessesRisk rdf:type owl:ObjectProperty ;
-              rdfs:domain :StressTesting ;
+              rdfs:label "ASSESSES_RISK" ;
               rdfs:comment "Stress testing is conducted to evaluate potential risks." .
 
 ###  compliesWith
 :compliesWith rdf:type owl:ObjectProperty ;
-              rdfs:domain :Bank ;
-              rdfs:range :Regulation ;
+              rdfs:label "COMPLIES_WITH" ;
               rdfs:comment "Specifies that a bank follows a regulation." .
 
 ###  manageCounterpartyRisk
 :manageCounterpartyRisk rdf:type owl:ObjectProperty ;
-                        rdfs:domain :Bank ;
-                        rdfs:range :CounterpartyRisk ;
+                        rdfs:label "MANAGES_COUNTERPARTY_RISK" ;
                         rdfs:comment "A bank takes measures to handle counterparty risk." .
 
 ###  setsLiquidityStandard
 :setsLiquidityStandard rdf:type owl:ObjectProperty ;
-                       rdfs:domain :Regulation ;
-                       rdfs:range :LiquidityStandard ;
+                       rdfs:label "SETS_LIQUIDITY_STANDARD" ;
                        rdfs:comment "A regulation establishes liquidity buffer requirements." .
