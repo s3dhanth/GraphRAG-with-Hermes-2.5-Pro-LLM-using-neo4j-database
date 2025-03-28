@@ -32,7 +32,6 @@
 :LiquidityStandard rdf:type owl:Class ;
                    rdfs:comment "Regulatory requirement ensuring a bank has sufficient liquidity." .
 
-
 #################################################################
 #    Object Properties (Relationships)
 #################################################################
@@ -60,7 +59,6 @@
                        rdfs:domain :Regulation ;
                        rdfs:range :LiquidityStandard ;
                        rdfs:comment "A regulation establishes liquidity buffer requirements." .
-
 
 #################################################################
 #    Instances (Example Data)
