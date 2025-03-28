@@ -8,122 +8,71 @@
 
 <http://neo4j.com/voc/banking#> rdf:type owl:Ontology .
 
-#################################################################
-#    Classes (Node Labels)
-#################################################################
-
-### Bank
+### Define Classes with Neo4j Labels
 :Bank rdf:type owl:Class ;
-      rdfs:comment "A financial institution operating under regulations." .
+      rdfs:label "Bank" ;
+      rdfs:comment "A financial institution that operates under regulations." .
 
-### Regulation
 :Regulation rdf:type owl:Class ;
-            rdfs:comment "Rules and guidelines imposed by authorities." .
+            rdfs:label "Regulation" ;
+            rdfs:comment "Rules and guidelines imposed by authorities to ensure financial stability." .
 
-### Risk
 :Risk rdf:type owl:Class ;
-      rdfs:comment "Potential threats affecting financial institutions." .
+      rdfs:label "Risk" ;
+      rdfs:comment "Potential threats or uncertainties affecting financial institutions." .
 
-### LiquidityRisk
 :LiquidityRisk rdf:type owl:Class ;
-               rdfs:subClassOf :Risk ;
-               rdfs:comment "Risk arising from lack of market liquidity." .
+               rdfs:label "LiquidityRisk" ;
+               rdfs:subClassOf :Risk .
 
-### CreditRisk
 :CreditRisk rdf:type owl:Class ;
-            rdfs:subClassOf :Risk ;
-            rdfs:comment "Risk of borrower defaulting on a loan." .
+            rdfs:label "CreditRisk" ;
+            rdfs:subClassOf :Risk .
 
-### MarketRisk
 :MarketRisk rdf:type owl:Class ;
-            rdfs:subClassOf :Risk ;
-            rdfs:comment "Risk due to changes in market conditions." .
+            rdfs:label "MarketRisk" ;
+            rdfs:subClassOf :Risk .
 
-### CounterpartyRisk
 :CounterpartyRisk rdf:type owl:Class ;
-                  rdfs:subClassOf :Risk ;
-                  rdfs:comment "Risk from counterparty default in a transaction." .
+                  rdfs:label "CounterpartyRisk" ;
+                  rdfs:subClassOf :Risk .
 
-### CapitalRequirement
 :CapitalRequirement rdf:type owl:Class ;
-                    rdfs:comment "Minimum capital a bank must hold." .
+                    rdfs:label "CapitalRequirement" .
 
-### LiquidityStandard
 :LiquidityStandard rdf:type owl:Class ;
-                   rdfs:comment "Regulation ensuring banks have sufficient liquidity." .
+                   rdfs:label "LiquidityStandard" .
 
-### StressTesting
 :StressTesting rdf:type owl:Class ;
-               rdfs:comment "Process of evaluating financial risk resilience." .
+               rdfs:label "StressTesting" .
 
-#################################################################
-#    Object Properties (Relationships)
-#################################################################
-
-### compliesWith (Bank → Regulation)
+### Relationships (Object Properties)
 :compliesWith rdf:type owl:ObjectProperty ;
               rdfs:domain :Bank ;
               rdfs:range :Regulation ;
-              rdfs:comment "A bank follows a regulation." .
+              rdfs:label "COMPLIES_WITH" .
 
-### addresses (Regulation → Risk)
 :addresses rdf:type owl:ObjectProperty ;
            rdfs:domain :Regulation ;
            rdfs:range :Risk ;
-           rdfs:comment "A regulation mitigates or controls a risk." .
+           rdfs:label "ADDRESSES" .
 
-### setsCapitalRequirement (Regulation → CapitalRequirement)
 :setsCapitalRequirement rdf:type owl:ObjectProperty ;
                         rdfs:domain :Regulation ;
                         rdfs:range :CapitalRequirement ;
-                        rdfs:comment "A regulation defines minimum capital requirements." .
+                        rdfs:label "SETS_CAPITAL_REQUIREMENT" .
 
-### setsLiquidityStandard (Regulation → LiquidityStandard)
 :setsLiquidityStandard rdf:type owl:ObjectProperty ;
                        rdfs:domain :Regulation ;
                        rdfs:range :LiquidityStandard ;
-                       rdfs:comment "A regulation establishes liquidity buffer requirements." .
+                       rdfs:label "SETS_LIQUIDITY_STANDARD" .
 
-### assessesRisk (StressTesting → Risk)
 :assessesRisk rdf:type owl:ObjectProperty ;
               rdfs:domain :StressTesting ;
               rdfs:range :Risk ;
-              rdfs:comment "Stress testing evaluates risks." .
+              rdfs:label "ASSESSES_RISK" .
 
-### managesCounterpartyRisk (Bank → CounterpartyRisk)
 :managesCounterpartyRisk rdf:type owl:ObjectProperty ;
                          rdfs:domain :Bank ;
                          rdfs:range :CounterpartyRisk ;
-                         rdfs:comment "A bank manages counterparty risk in transactions." .
-
-#################################################################
-#    Instances (Example Data)
-#################################################################
-
-### Example Bank
-:BankA rdf:type owl:NamedIndividual , :Bank ;
-       :compliesWith :RegulationX ;
-       :managesCounterpartyRisk :CounterpartyRiskA .
-
-### Example Regulation
-:RegulationX rdf:type owl:NamedIndividual , :Regulation ;
-             :addresses :RiskA ;
-             :setsCapitalRequirement :CapitalRequirementA ;
-             :setsLiquidityStandard :LiquidityStandardA .
-
-### Example Risks
-:RiskA rdf:type owl:NamedIndividual , :Risk .
-:LiquidityRiskA rdf:type owl:NamedIndividual , :LiquidityRisk .
-:CreditRiskA rdf:type owl:NamedIndividual , :CreditRisk .
-:MarketRiskA rdf:type owl:NamedIndividual , :MarketRisk .
-:CounterpartyRiskA rdf:type owl:NamedIndividual , :CounterpartyRisk .
-
-### Example Capital Requirement
-:CapitalRequirementA rdf:type owl:NamedIndividual , :CapitalRequirement .
-
-### Example Liquidity Standard
-:LiquidityStandardA rdf:type owl:NamedIndividual , :LiquidityStandard .
-
-### Example Stress Testing
-:StressTestingA rdf:type owl:NamedIndividual , :StressTesting ;
-                :assessesRisk :RiskA .
+                         rdfs:label "MANAGES_COUNTERPARTY_RISK" .
