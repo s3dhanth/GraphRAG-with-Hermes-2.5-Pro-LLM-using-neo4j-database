@@ -1,106 +1,72 @@
-@prefix : <http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/> .
+@prefix : <http://neo4j.com/voc/banking#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/> .
+@base <http://neo4j.com/voc/banking#> .
 
-<http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4> rdf:type owl:Ontology .
-
-#################################################################
-#    Classes
-#################################################################
-
-###  Bank
-:Bank rdf:type owl:Class ;
-      rdfs:label "Bank" ;
-      rdfs:comment "A financial institution that operates under regulations." .
-
-###  CapitalRequirement
-:CapitalRequirement rdf:type owl:Class ;
-                    rdfs:label "CapitalRequirement" ;
-                    rdfs:comment "The minimum amount of capital a bank must hold to reduce risk." .
-
-###  CounterpartyRisk
-:CounterpartyRisk rdf:type owl:Class ;
-                  rdfs:subClassOf :Risk ;
-                  rdfs:label "CounterpartyRisk" ;
-                  rdfs:comment "The risk that a counterparty in a financial transaction defaults." .
-
-###  CreditRisk
-:CreditRisk rdf:type owl:Class ;
-            rdfs:subClassOf :Risk ;
-            rdfs:label "CreditRisk" ;
-            rdfs:comment "The risk of loss due to a borrower's failure to repay." .
-
-###  LiquidityRisk
-:LiquidityRisk rdf:type owl:Class ;
-               rdfs:subClassOf :Risk ;
-               rdfs:label "LiquidityRisk" ;
-               rdfs:comment "The risk that a bank may not have enough liquid assets to meet obligations." .
-
-###  LiquidityStandard
-:LiquidityStandard rdf:type owl:Class ;
-                   rdfs:label "LiquidityStandard" ;
-                   rdfs:comment "Regulatory requirement ensuring a bank has enough liquidity." .
-
-###  MarketRisk
-:MarketRisk rdf:type owl:Class ;
-            rdfs:subClassOf :Risk ;
-            rdfs:label "MarketRisk" ;
-            rdfs:comment "The risk of financial loss due to market fluctuations." .
-
-###  Regulation
-:Regulation rdf:type owl:Class ;
-            rdfs:label "Regulation" ;
-            rdfs:comment "Rules and guidelines imposed by authorities to ensure financial stability." .
-
-###  Risk
-:Risk rdf:type owl:Class ;
-      rdfs:label "Risk" ;
-      rdfs:comment "Potential threats or uncertainties affecting financial institutions." .
-
-###  StressTesting
-:StressTesting rdf:type owl:Class ;
-               rdfs:label "StressTesting" ;
-               rdfs:comment "A process to assess how a financial institution withstands adverse conditions." .
+<http://neo4j.com/voc/banking#> rdf:type owl:Ontology .
 
 #################################################################
 #    Object Properties
 #################################################################
 
-###  addresses
-:addresses rdf:type owl:ObjectProperty ;
-           rdfs:domain :Regulation ;
-           rdfs:range :Risk ;
-           rdfs:label "ADDRESSES" ;
+###  Relationships formatted for Neo4j
+
+:ADDRESSES rdf:type owl:ObjectProperty ;
            rdfs:comment "A regulation mitigates or controls a risk." .
 
-###  assessesRisk
-:assessesRisk rdf:type owl:ObjectProperty ;
-              rdfs:domain :StressTesting ;
-              rdfs:range :Risk ;
-              rdfs:label "ASSESSES_RISK" ;
+:ASSESSES_RISK rdf:type owl:ObjectProperty ;
               rdfs:comment "Stress testing is conducted to evaluate potential risks." .
 
-###  compliesWith
-:compliesWith rdf:type owl:ObjectProperty ;
-              rdfs:domain :Bank ;
-              rdfs:range :Regulation ;
-              rdfs:label "COMPLIES_WITH" ;
+:COMPLIES_WITH rdf:type owl:ObjectProperty ;
               rdfs:comment "Specifies that a bank follows a regulation." .
 
-###  manageCounterpartyRisk
-:manageCounterpartyRisk rdf:type owl:ObjectProperty ;
-                        rdfs:domain :Bank ;
-                        rdfs:range :CounterpartyRisk ;
-                        rdfs:label "MANAGES_COUNTERPARTY_RISK" ;
+:MANAGES_COUNTERPARTY_RISK rdf:type owl:ObjectProperty ;
                         rdfs:comment "A bank takes measures to handle counterparty risk." .
 
-###  setsLiquidityStandard
-:setsLiquidityStandard rdf:type owl:ObjectProperty ;
-                       rdfs:domain :Regulation ;
-                       rdfs:range :LiquidityStandard ;
-                       rdfs:label "SETS_LIQUIDITY_STANDARD" ;
+:SETS_LIQUIDITY_STANDARD rdf:type owl:ObjectProperty ;
                        rdfs:comment "A regulation establishes liquidity buffer requirements." .
+
+#################################################################
+#    Classes
+#################################################################
+
+###  Classes with Schema.org references
+
+:BANK rdf:type owl:Class ;
+      rdfs:subClassOf <https://schema.org/Organization> ;
+      rdfs:comment "A financial institution that operates under regulations." .
+
+:CAPITAL_REQUIREMENT rdf:type owl:Class ;
+                    rdfs:comment "The minimum amount of capital a bank must hold to reduce risk." .
+
+:COUNTERPARTY_RISK rdf:type owl:Class ;
+                  rdfs:subClassOf :RISK ;
+                  rdfs:comment "The risk that a counterparty in a financial transaction defaults." .
+
+:CREDIT_RISK rdf:type owl:Class ;
+            rdfs:subClassOf :RISK ;
+            rdfs:comment "The risk of loss due to a borrower's failure to repay." .
+
+:LIQUIDITY_RISK rdf:type owl:Class ;
+               rdfs:subClassOf :RISK ;
+               rdfs:comment "The risk that a bank may not have enough liquid assets to meet obligations." .
+
+:LIQUIDITY_STANDARD rdf:type owl:Class ;
+                   rdfs:comment "Regulatory requirement ensuring a bank has enough liquidity." .
+
+:MARKET_RISK rdf:type owl:Class ;
+            rdfs:subClassOf :RISK ;
+            rdfs:comment "The risk of financial loss due to market fluctuations." .
+
+:REGULATION rdf:type owl:Class ;
+            rdfs:comment "Rules and guidelines imposed by authorities to ensure financial stability." .
+
+:RISK rdf:type owl:Class ;
+      rdfs:comment "Potential threats or uncertainties affecting financial institutions." .
+
+:STRESS_TESTING rdf:type owl:Class ;
+               rdfs:comment "A process to assess how a financial institution withstands adverse conditions." .
+
