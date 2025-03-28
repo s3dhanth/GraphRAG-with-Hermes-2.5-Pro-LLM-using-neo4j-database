@@ -1,12 +1,13 @@
-@prefix : <http://neo4j.com/ontologies/banking#> .
+@prefix : <http://neo4j.com/voc/banking#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://neo4j.com/voc/banking#> .
 
-@base <http://neo4j.com/ontologies/banking#> .
-
-<http://neo4j.com/ontologies/banking> rdf:type owl:Ontology .
+<http://neo4j.com/voc/banking#> rdf:type owl:Ontology ;
+                                 owl:imports <https://schema.org/version/latest/schemaorg-current-https.ttl> .
 
 #################################################################
 #    Classes (Nodes)
@@ -42,33 +43,33 @@
 #    Object Properties (Relationships)
 #################################################################
 
-###  COMPLIES_WITH
-:COMPLIES_WITH rdf:type owl:ObjectProperty ;
-               rdfs:domain :Bank ;
-               rdfs:range :Regulation ;
-               rdfs:label "COMPLIES_WITH" ;
-               rdfs:comment "A bank follows a regulation." .
+###  http://neo4j.com/voc/banking#compliesWith
+:compliesWith rdf:type owl:ObjectProperty ;
+              rdfs:label "compliesWith" ;
+              rdfs:comment "A bank follows a regulation." ;
+              rdfs:range :Regulation ;
+              rdfs:domain :Bank .
 
-###  ADDRESSES
-:ADDRESSES rdf:type owl:ObjectProperty ;
-           rdfs:domain :Regulation ;
+###  http://neo4j.com/voc/banking#addresses
+:addresses rdf:type owl:ObjectProperty ;
+           rdfs:label "addresses" ;
+           rdfs:comment "A regulation mitigates or controls a risk." ;
            rdfs:range :Risk ;
-           rdfs:label "ADDRESSES" ;
-           rdfs:comment "A regulation mitigates or controls a risk." .
+           rdfs:domain :Regulation .
 
-###  SETS (for Capital Requirement)
-:SETS_CAPITAL_REQUIREMENT rdf:type owl:ObjectProperty ;
-                          rdfs:domain :Regulation ;
-                          rdfs:range :CapitalRequirement ;
-                          rdfs:label "SETS_CAPITAL_REQUIREMENT" ;
-                          rdfs:comment "A regulation defines the minimum capital requirement for banks." .
+###  http://neo4j.com/voc/banking#setsCapitalRequirement
+:setsCapitalRequirement rdf:type owl:ObjectProperty ;
+                        rdfs:label "setsCapitalRequirement" ;
+                        rdfs:comment "A regulation defines the minimum capital requirement for banks." ;
+                        rdfs:range :CapitalRequirement ;
+                        rdfs:domain :Regulation .
 
-###  SETS (for Liquidity Standard)
-:SETS_LIQUIDITY_STANDARD rdf:type owl:ObjectProperty ;
-                         rdfs:domain :Regulation ;
-                         rdfs:range :LiquidityStandard ;
-                         rdfs:label "SETS_LIQUIDITY_STANDARD" ;
-                         rdfs:comment "A regulation establishes liquidity buffer requirements." .
+###  http://neo4j.com/voc/banking#setsLiquidityStandard
+:setsLiquidityStandard rdf:type owl:ObjectProperty ;
+                       rdfs:label "setsLiquidityStandard" ;
+                       rdfs:comment "A regulation establishes liquidity buffer requirements." ;
+                       rdfs:range :LiquidityStandard ;
+                       rdfs:domain :Regulation .
 
 
 #################################################################
@@ -77,13 +78,13 @@
 
 ### Example Bank
 :BankA rdf:type owl:NamedIndividual , :Bank ;
-       :COMPLIES_WITH :RegulationX .
+       :compliesWith :RegulationX .
 
 ### Example Regulation
 :RegulationX rdf:type owl:NamedIndividual , :Regulation ;
-             :ADDRESSES :RiskA ;
-             :SETS_CAPITAL_REQUIREMENT :CapitalRequirementA ;
-             :SETS_LIQUIDITY_STANDARD :LiquidityStandardA .
+             :addresses :RiskA ;
+             :setsCapitalRequirement :CapitalRequirementA ;
+             :setsLiquidityStandard :LiquidityStandardA .
 
 ### Example Risk
 :RiskA rdf:type owl:NamedIndividual , :Risk .
