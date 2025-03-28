@@ -1,96 +1,115 @@
-@prefix : <http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/> . 
+prefix : <http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> . 
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> . 
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @base <http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/> .
 
 <http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4> rdf:type owl:Ontology .
 
 #################################################################
-#    Classes with Explicit Labels for Neo4j
+#    Object Properties
 #################################################################
 
-###  Bank
-:Bank rdf:type owl:Class ;
-      rdfs:label "Bank" ;
-      rdfs:comment "A financial institution that operates under regulations." .
-
-###  CapitalRequirement
-:CapitalRequirement rdf:type owl:Class ;
-                    rdfs:label "CapitalRequirement" ;
-                    rdfs:comment "The minimum amount of capital a bank must hold to reduce risk." .
-
-###  CounterpartyRisk
-:CounterpartyRisk rdf:type owl:Class ;
-                  rdfs:subClassOf :Risk ;
-                  rdfs:label "CounterpartyRisk" ;
-                  rdfs:comment "The risk that a counterparty in a financial transaction defaults." .
-
-###  CreditRisk
-:CreditRisk rdf:type owl:Class ;
-            rdfs:subClassOf :Risk ;
-            rdfs:label "CreditRisk" ;
-            rdfs:comment "The risk of loss due to a borrower's failure to repay." .
-
-###  LiquidityRisk
-:LiquidityRisk rdf:type owl:Class ;
-               rdfs:subClassOf :Risk ;
-               rdfs:label "LiquidityRisk" ;
-               rdfs:comment "The risk that a bank may not have enough liquid assets to meet obligations." .
-
-###  LiquidityStandard
-:LiquidityStandard rdf:type owl:Class ;
-                   rdfs:label "LiquidityStandard" ;
-                   rdfs:comment "Regulatory requirement ensuring a bank has enough liquidity." .
-
-###  MarketRisk
-:MarketRisk rdf:type owl:Class ;
-            rdfs:subClassOf :Risk ;
-            rdfs:label "MarketRisk" ;
-            rdfs:comment "The risk of financial loss due to market fluctuations." .
-
-###  Regulation
-:Regulation rdf:type owl:Class ;
-            rdfs:label "Regulation" ;
-            rdfs:comment "Rules and guidelines imposed by authorities to ensure financial stability." .
-
-###  Risk
-:Risk rdf:type owl:Class ;
-      rdfs:label "Risk" ;
-      rdfs:comment "Potential threats or uncertainties affecting financial institutions." .
-
-###  StressTesting
-:StressTesting rdf:type owl:Class ;
-               rdfs:label "StressTesting" ;
-               rdfs:comment "A process to assess how a financial institution withstands adverse conditions." .
-
-#################################################################
-#    Object Properties with Explicit Labels for Neo4j
-#################################################################
-
-###  addresses
+###  http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/addresses
 :addresses rdf:type owl:ObjectProperty ;
-           rdfs:label "ADDRESSES" ;
+           rdfs:domain :Regulation ;
+           rdfs:range :Risk ;
            rdfs:comment "A regulation mitigates or controls a risk." .
 
-###  assessesRisk
+
+###  http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/assessesRisk
 :assessesRisk rdf:type owl:ObjectProperty ;
-              rdfs:label "ASSESSES_RISK" ;
+              rdfs:domain :StressTesting ;
               rdfs:comment "Stress testing is conducted to evaluate potential risks." .
 
-###  compliesWith
+
+###  http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/compliesWith
 :compliesWith rdf:type owl:ObjectProperty ;
-              rdfs:label "COMPLIES_WITH" ;
+              rdfs:domain :Bank ;
+              rdfs:range :Regulation ;
               rdfs:comment "Specifies that a bank follows a regulation." .
 
-###  manageCounterpartyRisk
+
+###  http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/manageCounterpartyRisk
 :manageCounterpartyRisk rdf:type owl:ObjectProperty ;
-                        rdfs:label "MANAGES_COUNTERPARTY_RISK" ;
+                        rdfs:domain :Bank ;
+                        rdfs:range :CounterpartyRisk ;
                         rdfs:comment "A bank takes measures to handle counterparty risk." .
 
-###  setsLiquidityStandard
+
+###  http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/setsLiquidityStandard
 :setsLiquidityStandard rdf:type owl:ObjectProperty ;
-                       rdfs:label "SETS_LIQUIDITY_STANDARD" ;
+                       rdfs:domain :Regulation ;
+                       rdfs:range :LiquidityStandard ;
                        rdfs:comment "A regulation establishes liquidity buffer requirements." .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/Bank
+:Bank rdf:type owl:Class ;
+      rdfs:comment "A financial institution that operates under regulations." ;
+      rdfs:label "Bank" .
+
+
+###  http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/CapitalRequirement
+:CapitalRequirement rdf:type owl:Class ;
+                    rdfs:comment "The minimum amount of capital a bank must hold to reduce risk." ;
+                    rdfs:label "CapitalRequirement" .
+
+
+###  http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/CounterpartyRisk
+:CounterpartyRisk rdf:type owl:Class ;
+                  rdfs:subClassOf :Risk ;
+                  rdfs:comment "The risk that a counterparty in a financial transaction defaults." ;
+                  rdfs:label "CounterpartRisk" .
+
+
+###  http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/CreditRisk
+:CreditRisk rdf:type owl:Class ;
+            rdfs:subClassOf :Risk ;
+            rdfs:comment "The risk of loss due to a borrower's failure to repay." ;
+            rdfs:label "CreditRisk" .
+
+
+###  http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/LiquidityRisk
+:LiquidityRisk rdf:type owl:Class ;
+               rdfs:subClassOf :Risk ;
+               rdfs:comment "The risk that a bank may not have enough liquid assets to meet obligations." .
+
+
+###  http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/LiquidityStandard
+:LiquidityStandard rdf:type owl:Class ;
+                   rdfs:comment "Regulatory requirement ensuring a bank has enough liquidity." ;
+                   rdfs:label "LiquidityStandard" .
+
+
+###  http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/MarketRisk
+:MarketRisk rdf:type owl:Class ;
+            rdfs:subClassOf :Risk ;
+            rdfs:comment "The risk of financial loss due to market fluctuations." .
+
+
+###  http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/Regulation
+:Regulation rdf:type owl:Class ;
+            rdfs:comment "Rules and guidelines imposed by authorities to ensure financial stability." ;
+            rdfs:label "Regulation" .
+
+
+###  http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/Risk
+:Risk rdf:type owl:Class ;
+      rdfs:comment "Potential threats or uncertainties affecting financial institutions." ;
+      rdfs:label "Risk" .
+
+
+###  http://www.semanticweb.org/ashut/ontologies/2025/2/untitled-ontology-4/StressTesting
+:StressTesting rdf:type owl:Class ;
+               rdfs:comment "A process to assess how a financial institution withstands adverse conditions." ;
+               rdfs:label "StressTesting" .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
