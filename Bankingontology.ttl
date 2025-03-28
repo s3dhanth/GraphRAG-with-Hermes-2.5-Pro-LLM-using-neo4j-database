@@ -13,35 +13,35 @@
 :addresses rdf:type owl:ObjectProperty ;
            rdfs:domain :Regulation ;
            rdfs:range :Risk ;
-           rdfs:label "Addresses" ;
+           rdfs:label "ADDRESSES" ;
            rdfs:comment "A regulation mitigates or controls a risk." .
 
 ###  :assessesRisk
 :assessesRisk rdf:type owl:ObjectProperty ;
               rdfs:domain :StressTesting ;
               rdfs:range :Risk ;
-              rdfs:label "Assesses Risk" ;
+              rdfs:label "ASSESSES_RISK" ;
               rdfs:comment "Stress testing is conducted to evaluate potential risks." .
 
 ###  :compliesWith
 :compliesWith rdf:type owl:ObjectProperty ;
               rdfs:domain :Bank ;
               rdfs:range :Regulation ;
-              rdfs:label "Complies With" ;
+              rdfs:label "COMPLIES_WITH" ;
               rdfs:comment "Specifies that a bank follows a regulation." .
 
 ###  :manageCounterpartyRisk
 :manageCounterpartyRisk rdf:type owl:ObjectProperty ;
                         rdfs:domain :Bank ;
                         rdfs:range :CounterpartyRisk ;
-                        rdfs:label "Manages Counterparty Risk" ;
+                        rdfs:label "MANAGES_COUNTERPARTY_RISK" ;
                         rdfs:comment "A bank takes measures to handle counterparty risk." .
 
 ###  :setsLiquidityStandard
 :setsLiquidityStandard rdf:type owl:ObjectProperty ;
                        rdfs:domain :Regulation ;
                        rdfs:range :LiquidityStandard ;
-                       rdfs:label "Sets Liquidity Standard" ;
+                       rdfs:label "SETS_LIQUIDITY_STANDARD" ;
                        rdfs:comment "A regulation establishes liquidity buffer requirements." .
 
 #################################################################
