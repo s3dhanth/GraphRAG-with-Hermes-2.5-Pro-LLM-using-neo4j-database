@@ -1,42 +1,41 @@
-@prefix : <http://www.semanticweb.org/ashut/ontologies/2025/3/banking#> .
+@prefix : <http://neo4j.com/ontologies/banking#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix neo4j: <neo4j://graph.schema#> .  # ✅ Neo4j-compatible prefix
 
-@base <http://www.semanticweb.org/ashut/ontologies/2025/3/banking#> .
+@base <http://neo4j.com/ontologies/banking#> .
 
-<http://www.semanticweb.org/ashut/ontologies/2025/3/banking> rdf:type owl:Ontology .
+<http://neo4j.com/ontologies/banking> rdf:type owl:Ontology .
 
 #################################################################
 #    Classes (Nodes)
 #################################################################
 
 ###  Bank
-neo4j:Bank rdf:type owl:Class ;
-           rdfs:label "Bank" ;
-           rdfs:comment "A financial institution that operates under regulations." .
+:Bank rdf:type owl:Class ;
+      rdfs:label "Bank" ;
+      rdfs:comment "A financial institution that operates under regulations." .
 
 ###  Regulation
-neo4j:Regulation rdf:type owl:Class ;
-                 rdfs:label "Regulation" ;
-                 rdfs:comment "Rules and guidelines imposed by authorities to ensure financial stability." .
+:Regulation rdf:type owl:Class ;
+            rdfs:label "Regulation" ;
+            rdfs:comment "Rules and guidelines imposed by authorities to ensure financial stability." .
 
 ###  Risk
-neo4j:Risk rdf:type owl:Class ;
-           rdfs:label "Risk" ;
-           rdfs:comment "Potential threats or uncertainties affecting financial institutions." .
+:Risk rdf:type owl:Class ;
+      rdfs:label "Risk" ;
+      rdfs:comment "Potential threats or uncertainties affecting financial institutions." .
 
 ###  CapitalRequirement
-neo4j:CapitalRequirement rdf:type owl:Class ;
-                         rdfs:label "CapitalRequirement" ;
-                         rdfs:comment "The minimum amount of capital a bank must hold to reduce risk." .
+:CapitalRequirement rdf:type owl:Class ;
+                    rdfs:label "CapitalRequirement" ;
+                    rdfs:comment "The minimum amount of capital a bank must hold to reduce risk." .
 
 ###  LiquidityStandard
-neo4j:LiquidityStandard rdf:type owl:Class ;
-                        rdfs:label "LiquidityStandard" ;
-                        rdfs:comment "Regulatory requirement ensuring a bank has sufficient liquidity." .
+:LiquidityStandard rdf:type owl:Class ;
+                   rdfs:label "LiquidityStandard" ;
+                   rdfs:comment "Regulatory requirement ensuring a bank has sufficient liquidity." .
 
 
 #################################################################
@@ -44,32 +43,32 @@ neo4j:LiquidityStandard rdf:type owl:Class ;
 #################################################################
 
 ###  COMPLIES_WITH
-neo4j:COMPLIES_WITH rdf:type owl:ObjectProperty ;
-                    rdfs:domain neo4j:Bank ;
-                    rdfs:range neo4j:Regulation ;
-                    rdfs:label "COMPLIES_WITH" ;
-                    rdfs:comment "A bank follows a regulation." .
+:COMPLIES_WITH rdf:type owl:ObjectProperty ;
+               rdfs:domain :Bank ;
+               rdfs:range :Regulation ;
+               rdfs:label "COMPLIES_WITH" ;
+               rdfs:comment "A bank follows a regulation." .
 
 ###  ADDRESSES
-neo4j:ADDRESSES rdf:type owl:ObjectProperty ;
-                rdfs:domain neo4j:Regulation ;
-                rdfs:range neo4j:Risk ;
-                rdfs:label "ADDRESSES" ;
-                rdfs:comment "A regulation mitigates or controls a risk." .
+:ADDRESSES rdf:type owl:ObjectProperty ;
+           rdfs:domain :Regulation ;
+           rdfs:range :Risk ;
+           rdfs:label "ADDRESSES" ;
+           rdfs:comment "A regulation mitigates or controls a risk." .
 
 ###  SETS (for Capital Requirement)
-neo4j:SETS_CAPITAL_REQUIREMENT rdf:type owl:ObjectProperty ;
-                               rdfs:domain neo4j:Regulation ;
-                               rdfs:range neo4j:CapitalRequirement ;
-                               rdfs:label "SETS_CAPITAL_REQUIREMENT" ;
-                               rdfs:comment "A regulation defines the minimum capital requirement for banks." .
+:SETS_CAPITAL_REQUIREMENT rdf:type owl:ObjectProperty ;
+                          rdfs:domain :Regulation ;
+                          rdfs:range :CapitalRequirement ;
+                          rdfs:label "SETS_CAPITAL_REQUIREMENT" ;
+                          rdfs:comment "A regulation defines the minimum capital requirement for banks." .
 
 ###  SETS (for Liquidity Standard)
-neo4j:SETS_LIQUIDITY_STANDARD rdf:type owl:ObjectProperty ;
-                              rdfs:domain neo4j:Regulation ;
-                              rdfs:range neo4j:LiquidityStandard ;
-                              rdfs:label "SETS_LIQUIDITY_STANDARD" ;
-                              rdfs:comment "A regulation establishes liquidity buffer requirements." .
+:SETS_LIQUIDITY_STANDARD rdf:type owl:ObjectProperty ;
+                         rdfs:domain :Regulation ;
+                         rdfs:range :LiquidityStandard ;
+                         rdfs:label "SETS_LIQUIDITY_STANDARD" ;
+                         rdfs:comment "A regulation establishes liquidity buffer requirements." .
 
 
 #################################################################
@@ -77,20 +76,20 @@ neo4j:SETS_LIQUIDITY_STANDARD rdf:type owl:ObjectProperty ;
 #################################################################
 
 ### Example Bank
-neo4j:BankA rdf:type owl:NamedIndividual , neo4j:Bank ;
-            neo4j:COMPLIES_WITH neo4j:RegulationX .
+:BankA rdf:type owl:NamedIndividual , :Bank ;
+       :COMPLIES_WITH :RegulationX .
 
 ### Example Regulation
-neo4j:RegulationX rdf:type owl:NamedIndividual , neo4j:Regulation ;
-                  neo4j:ADDRESSES neo4j:RiskA ;
-                  neo4j:SETS_CAPITAL_REQUIREMENT neo4j:CapitalRequirementA ;
-                  neo4j:SETS_LIQUIDITY_STANDARD neo4j:LiquidityStandardA .
+:RegulationX rdf:type owl:NamedIndividual , :Regulation ;
+             :ADDRESSES :RiskA ;
+             :SETS_CAPITAL_REQUIREMENT :CapitalRequirementA ;
+             :SETS_LIQUIDITY_STANDARD :LiquidityStandardA .
 
 ### Example Risk
-neo4j:RiskA rdf:type owl:NamedIndividual , neo4j:Risk .
+:RiskA rdf:type owl:NamedIndividual , :Risk .
 
 ### Example Capital Requirement
-neo4j:CapitalRequirementA rdf:type owl:NamedIndividual , neo4j:CapitalRequirement .
+:CapitalRequirementA rdf:type owl:NamedIndividual , :CapitalRequirement .
 
 ### Example Liquidity Standard
-neo4j:LiquidityStandardA rdf:type owl:NamedIndividual , neo4j:LiquidityStandard .
+:LiquidityStandardA rdf:type owl:NamedIndividual , :LiquidityStandard .
