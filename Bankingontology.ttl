@@ -1,72 +1,70 @@
-@prefix : <http://neo4j.com/voc/banking#> .
+@prefix : <http://www.semanticweb.org/ashut/ontologies/2025/2/banking#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://neo4j.com/voc/banking#> .
 
-<http://neo4j.com/voc/banking#> rdf:type owl:Ontology .
+@base <http://www.semanticweb.org/ashut/ontologies/2025/2/banking#> .
 
-#################################################################
-#    Object Properties
-#################################################################
-
-###  Relationships formatted for Neo4j
-
-:ADDRESSES rdf:type owl:ObjectProperty ;
-           rdfs:comment "A regulation mitigates or controls a risk." .
-
-:ASSESSES_RISK rdf:type owl:ObjectProperty ;
-              rdfs:comment "Stress testing is conducted to evaluate potential risks." .
-
-:COMPLIES_WITH rdf:type owl:ObjectProperty ;
-              rdfs:comment "Specifies that a bank follows a regulation." .
-
-:MANAGES_COUNTERPARTY_RISK rdf:type owl:ObjectProperty ;
-                        rdfs:comment "A bank takes measures to handle counterparty risk." .
-
-:SETS_LIQUIDITY_STANDARD rdf:type owl:ObjectProperty ;
-                       rdfs:comment "A regulation establishes liquidity buffer requirements." .
+<http://www.semanticweb.org/ashut/ontologies/2025/2/banking> rdf:type owl:Ontology .
 
 #################################################################
-#    Classes
+#    Classes (Node Labels)
 #################################################################
 
-###  Classes with Schema.org references
-
-:BANK rdf:type owl:Class ;
-      rdfs:subClassOf <https://schema.org/Organization> ;
+:Bank rdf:type owl:Class ;
       rdfs:comment "A financial institution that operates under regulations." .
 
-:CAPITAL_REQUIREMENT rdf:type owl:Class ;
-                    rdfs:comment "The minimum amount of capital a bank must hold to reduce risk." .
-
-:COUNTERPARTY_RISK rdf:type owl:Class ;
-                  rdfs:subClassOf :RISK ;
-                  rdfs:comment "The risk that a counterparty in a financial transaction defaults." .
-
-:CREDIT_RISK rdf:type owl:Class ;
-            rdfs:subClassOf :RISK ;
-            rdfs:comment "The risk of loss due to a borrower's failure to repay." .
-
-:LIQUIDITY_RISK rdf:type owl:Class ;
-               rdfs:subClassOf :RISK ;
-               rdfs:comment "The risk that a bank may not have enough liquid assets to meet obligations." .
-
-:LIQUIDITY_STANDARD rdf:type owl:Class ;
-                   rdfs:comment "Regulatory requirement ensuring a bank has enough liquidity." .
-
-:MARKET_RISK rdf:type owl:Class ;
-            rdfs:subClassOf :RISK ;
-            rdfs:comment "The risk of financial loss due to market fluctuations." .
-
-:REGULATION rdf:type owl:Class ;
+:Regulation rdf:type owl:Class ;
             rdfs:comment "Rules and guidelines imposed by authorities to ensure financial stability." .
 
-:RISK rdf:type owl:Class ;
+:Risk rdf:type owl:Class ;
       rdfs:comment "Potential threats or uncertainties affecting financial institutions." .
 
-:STRESS_TESTING rdf:type owl:Class ;
-               rdfs:comment "A process to assess how a financial institution withstands adverse conditions." .
+:CounterpartyRisk rdf:type owl:Class ;
+                  rdfs:subClassOf :Risk ;
+                  rdfs:comment "Risk of counterparty default in transactions." .
 
+:LiquidityRisk rdf:type owl:Class ;
+               rdfs:subClassOf :Risk ;
+               rdfs:comment "Risk that a bank lacks liquidity to meet obligations." .
+
+:StressTesting rdf:type owl:Class ;
+               rdfs:comment "Process to assess financial institution stability under stress." .
+
+#################################################################
+#    Object Properties (Relationships)
+#################################################################
+
+:compliesWith rdf:type owl:ObjectProperty ;
+              rdfs:domain :Bank ;
+              rdfs:range :Regulation ;
+              rdfs:comment "A bank follows a regulation." .
+
+:assessesRisk rdf:type owl:ObjectProperty ;
+              rdfs:domain :StressTesting ;
+              rdfs:range :Risk ;
+              rdfs:comment "Stress testing evaluates risks." .
+
+:manageCounterpartyRisk rdf:type owl:ObjectProperty ;
+                        rdfs:domain :Bank ;
+                        rdfs:range :CounterpartyRisk ;
+                        rdfs:comment "A bank manages counterparty risk." .
+
+:setsLiquidityStandard rdf:type owl:ObjectProperty ;
+                       rdfs:domain :Regulation ;
+                       rdfs:range :LiquidityRisk ;
+                       rdfs:comment "A regulation sets liquidity risk standards." .
+
+#################################################################
+#    Instances (Example Data)
+#################################################################
+
+:BankA rdf:type owl:NamedIndividual , :Bank ;
+       :compliesWith :RegulationX .
+
+:RegulationX rdf:type owl:NamedIndividual , :Regulation ;
+             :setsLiquidityStandard :LiquidityRiskA .
+
+:LiquidityRiskA rdf:type owl:NamedIndividual , :LiquidityRisk .
